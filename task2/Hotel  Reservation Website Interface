@@ -1,1 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Grand Palace Hotel</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    background: #172554;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    color: #facc15;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #facc15;
+}
+
+/* Home */
+.home {
+    min-height: 75vh;
+    background:
+    linear-gradient(#0008, #0008),
+    url("https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.home h1 {
+    font-size: 45px;
+    animation: slide 1.5s;
+}
+
+.home p {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.btn {
+    background: #d4a017;
+    color: white;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #172554;
+    transform: scale(1.05);
+}
+
+/* Common Sections */
+section {
+    padding: 55px 8%;
+    text-align: center;
+}
+
+section h2 {
+    color: #172554;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+/* Room Cards */
+.room-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.room-card {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px #0002;
+    transition: 0.4s;
+}
+
+.room-card:hover {
+    transform: translateY(-10px);
+}
+
+.room-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-card h3 {
+    color: #172554;
+    margin: 15px;
+}
+
+.room-card p {
+    padding: 5px 15px;
+    line-height: 1.5;
+}
+
+.price {
+    color: #b8860b;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 12px;
+}
+
+/* Facilities */
+.facility-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.facility {
+    background: white;
+    padding: 25px;
+    width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #0002;
+    transition: 0.3s;
+}
+
+.facility:hover {
+    background: #172554;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Booking Form */
+.booking {
+    background: #e8edf5;
+}
+
+form {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px #0002;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+/* Animations */
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media(max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .home h1 {
+        font-size: 30px;
+    }
+
+    .room-card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <h2>Grand Palace</h2>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Home -->
+<section class="home" id="home">
+    <div>
+        <h1>Welcome to Grand Palace Hotel</h1>
+        <p>Experience Luxury, Comfort and Hospitality</p>
+        <a href="#booking" class="btn">Book Your Stay</a>
+    </div>
+</section>
+
+<!-- Rooms -->
+<section id="rooms">
+    <h2>Our Room Categories</h2>
+
+    <div class="room-container">
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600"
+            alt="Deluxe Room">
+
+            <h3>Deluxe Room</h3>
+            <p>Comfortable room with modern
+            furniture and beautiful interiors.</p>
+            <p>Facilities: Wi-Fi, TV, AC</p>
+            <div class="price">₹2,500 / Night</div>
+            <a href="#booking" class="btn">Book Now</a>
+            <br><br>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600"
+            alt="Luxury Room">
+
+            <h3>Luxury Room</h3>
+            <p>Spacious room with premium
+            interiors and elegant furniture.</p>
+            <p>Facilities: Wi-Fi, AC, TV, Balcony</p>
+            <div class="price">₹4,000 / Night</div>
+            <a href="#booking" class="btn">Book Now</a>
+            <br><br>
+        </div>
+
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600"
+            alt="Family Suite">
+
+            <h3>Family Suite</h3>
+            <p>Large room suitable for families
+            with comfortable beds.</p>
+            <p>Facilities: Wi-Fi, AC, TV, Kitchen</p>
+            <div class="price">₹6,000 / Night</div>
+            <a href="#booking" class="btn">Book Now</a>
+            <br><br>
+        </div>
+
+    </div>
+</section>
+
+<!-- Facilities -->
+<section id="facilities">
+    <h2>Hotel Facilities</h2>
+
+    <div class="facility-container">
+
+        <div class="facility">
+            <h3>📶 Wi-Fi</h3>
+            <p>Free Internet</p>
+        </div>
+
+        <div class="facility">
+            <h3>🏊 Pool</h3>
+            <p>Swimming Pool</p>
+        </div>
+
+        <div class="facility">
+            <h3>🍽️ Restaurant</h3>
+            <p>Food Services</p>
+        </div>
+
+        <div class="facility">
+            <h3>🚗 Parking</h3>
+            <p>Free Parking</p>
+        </div>
+
+        <div class="facility">
+            <h3>❄️ AC</h3>
+            <p>Air Conditioning</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Booking Form -->
+<section class="booking" id="booking">
+
+    <h2>Room Reservation</h2>
+
+    <form id="bookingForm">
+
+        <label>Full Name</label>
+        <input type="text" id="name"
+        placeholder="Enter your name" required>
+
+        <label>Email Address</label>
+        <input type="email" id="email"
+        placeholder="Enter your email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone"
+        placeholder="Enter phone number"
+        pattern="[0-9]{10}" required>
+
+        <label>Room Category</label>
+        <select id="room" required>
+            <option value="">Select Room</option>
+            <option value="Deluxe Room">Deluxe Room</option>
+            <option value="Luxury Room">Luxury Room</option>
+            <option value="Family Suite">Family Suite</option>
+        </select>
+
+        <label>Number of Guests</label>
+        <input type="number" id="guests"
+        min="1" max="10" required>
+
+        <label>Check-in Date</label>
+        <input type="date" id="checkin" required>
+
+        <label>Check-out Date</label>
+        <input type="date" id="checkout" required>
+
+        <button type="submit" class="btn">
+            Submit Reservation
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact Us</h2>
+
+    <p>Email: grandpalace@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+    <p>Address: Andhra Pradesh, India</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Grand Palace Hotel.
+    All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// Set minimum booking date
+let today = new Date().toISOString().split("T")[0];
+
+document.getElementById("checkin").min = today;
+document.getElementById("checkout").min = today;
+
+// Update checkout minimum date
+document.getElementById("checkin").addEventListener("change", function() {
+    let checkin = this.value;
+    document.getElementById("checkout").min = checkin;
+
+    if (document.getElementById("checkout").value <= checkin) {
+        document.getElementById("checkout").value = "";
+    }
+});
+
+// Booking form validation
+document.getElementById("bookingForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let room = document.getElementById("room").value;
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+
+    if (checkout <= checkin) {
+        alert("Check-out date must be after check-in date.");
+        return;
+    }
+
+    document.getElementById("message").innerHTML =
+    "Thank you, " + name +
+    "! Your " + room +
+    " reservation request has been submitted.";
+
+    document.getElementById("message").style.color = "green";
+
+    this.reset();
+    document.getElementById("checkin").min = today;
+    document.getElementById("checkout").min = today;
+});
+
+</script>
+
+</body>
+</html>
