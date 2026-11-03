@@ -1,1 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Portfolio</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #222;
+        }
+
+        /* Navigation */
+        nav {
+            background: #172554;
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h2 {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* Home */
+        .home {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg,
+                #172554, #2563eb);
+            color: white;
+            padding: 30px;
+        }
+
+        .home h1 {
+            font-size: 45px;
+            animation: slideDown 1.2s;
+        }
+
+        .home p {
+            margin: 20px;
+            font-size: 20px;
+        }
+
+        .home button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #38bdf8;
+            color: #172554;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* Common Sections */
+        section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        section h2 {
+            color: #172554;
+            margin-bottom: 25px;
+            font-size: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 250px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000015;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px #00000025;
+        }
+
+        .card h3 {
+            color: #2563eb;
+            margin-bottom: 12px;
+        }
+
+        /* Skills */
+        .skill {
+            margin: 15px auto;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .skill-bar {
+            background: #ddd;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-level {
+            height: 12px;
+            background: #2563eb;
+            border-radius: 10px;
+            animation: grow 2s;
+        }
+
+        /* Resume */
+        .resume a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .resume a:hover {
+            background: #172554;
+            transform: scale(1.05);
+        }
+
+        /* Contact */
+        .contact p {
+            margin: 12px;
+        }
+
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes grow {
+            from { width: 0; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .home h1 {
+                font-size: 30px;
+            }
+
+            section {
+                padding: 45px 5%;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h2>My Portfolio</h2>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <div>
+            <h1>Hello, I'm Your Name</h1>
+            <p>B.Tech Student | Aspiring Developer</p>
+            <button onclick="showMessage()">
+                Explore My Portfolio
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello! I am a B.Tech first-year student.
+            I am interested in learning technology,
+            programming, and developing creative projects.
+            I enjoy exploring new ideas and improving my skills.
+        </p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Educational Qualifications</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>School Education</h3>
+                <p>School Name</p>
+                <p>Year: 2024</p>
+            </div>
+
+            <div class="card">
+                <h3>Intermediate</h3>
+                <p>College Name</p>
+                <p>Year: 2026</p>
+            </div>
+
+            <div class="card">
+                <h3>B.Tech</h3>
+                <p>College Name</p>
+                <p>First Year</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+
+        <div class="skill">
+            <p>HTML</p>
+            <div class="skill-bar">
+                <div class="skill-level"
+                     style="width: 80%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>CSS</p>
+            <div class="skill-bar">
+                <div class="skill-level"
+                     style="width: 70%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>Python</p>
+            <div class="skill-bar">
+                <div class="skill-level"
+                     style="width: 60%"></div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>JavaScript</p>
+            <div class="skill-bar">
+                <div class="skill-level"
+                     style="width: 50%"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <h2>My Hobbies</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Reading</h3>
+                <p>Reading books and gaining knowledge.</p>
+            </div>
+
+            <div class="card">
+                <h3>Music</h3>
+                <p>Listening to music in free time.</p>
+            </div>
+
+            <div class="card">
+                <h3>Learning</h3>
+                <p>Exploring new technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Portfolio Website</h3>
+                <p>A responsive personal website
+                   using HTML and CSS.</p>
+            </div>
+
+            <div class="card">
+                <h3>Student Management</h3>
+                <p>A basic Python project to
+                   manage student details.</p>
+            </div>
+
+            <div class="card">
+                <h3>Calculator</h3>
+                <p>A simple calculator using
+                   HTML, CSS and JavaScript.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2>Achievements</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>Certification</h3>
+                <p>Add your course certificates here.</p>
+            </div>
+
+            <div class="card">
+                <h3>Academic Achievement</h3>
+                <p>Add your academic achievements here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="resume" id="resume">
+        <h2>My Resume</h2>
+        <p>Click below to download my resume.</p>
+        <br>
+        <a href="resume.pdf" download>
+            Download Resume
+        </a>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Me</h2>
+
+        <p>Email: yourname@gmail.com</p>
+        <p>Phone: +91 XXXXXXXXXX</p>
+        <p>Location: Your City, India</p>
+        <p>LinkedIn: Add your LinkedIn profile</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Personal Portfolio.
+           All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function showMessage() {
+            alert("Welcome to my personal portfolio!");
+        }
+    </script>
+
+</body>
+</html>
