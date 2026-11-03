@@ -1,1 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Analytics Dashboard</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* Main Layout */
+.dashboard {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #172554;
+    color: white;
+    padding: 25px 15px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #38bdf8;
+    margin-bottom: 35px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+    background: #2563eb;
+}
+
+/* Main Content */
+.main {
+    padding: 25px;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.header h1 {
+    color: #172554;
+}
+
+.header span {
+    color: #64748b;
+}
+
+/* Dashboard Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000010;
+    transition: 0.3s;
+    animation: appear 0.8s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    color: #64748b;
+    font-size: 15px;
+}
+
+.card h2 {
+    margin: 15px 0;
+    color: #172554;
+    font-size: 26px;
+}
+
+.card p {
+    color: #16a34a;
+    font-size: 14px;
+}
+
+/* Chart Section */
+.chart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-box {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000010;
+}
+
+.chart-box h3 {
+    margin-bottom: 20px;
+    color: #172554;
+}
+
+/* Bar Chart */
+.bar-chart {
+    height: 220px;
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    border-bottom: 2px solid #ddd;
+    padding: 10px;
+    gap: 10px;
+}
+
+.bar {
+    width: 35px;
+    background: #3b82f6;
+    border-radius: 5px 5px 0 0;
+    transition: 0.3s;
+    animation: grow 1.5s;
+}
+
+.bar:hover {
+    background: #172554;
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* Performance */
+.performance {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.progress-item p {
+    margin-bottom: 8px;
+}
+
+.progress {
+    background: #e2e8f0;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    background: #2563eb;
+    border-radius: 10px;
+}
+
+/* Recent Activities */
+.activity-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.activity,
+.table-box {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000010;
+}
+
+.activity h3,
+.table-box h3 {
+    margin-bottom: 20px;
+    color: #172554;
+}
+
+.activity p {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Table */
+.table-box {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #eff6ff;
+    color: #172554;
+}
+
+.status {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes grow {
+    from {
+        height: 0;
+    }
+}
+
+/* Responsive Design */
+@media(max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 15px;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar li {
+        padding: 10px;
+        margin: 3px;
+        font-size: 13px;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-container {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+
+    <h2>My Dashboard</h2>
+
+    <ul>
+        <li class="active" onclick="showSection('overview', this)">
+            🏠 Overview
+        </li>
+
+        <li onclick="showSection('revenue', this)">
+            💰 Revenue
+        </li>
+
+        <li onclick="showSection('sales', this)">
+            📊 Sales
+        </li>
+
+        <li onclick="showSection('users', this)">
+            👥 Users
+        </li>
+
+        <li onclick="showSection('activities', this)">
+            🔔 Activities
+        </li>
+    </ul>
+
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+
+    <div class="header">
+        <div>
+            <h1>Analytics Dashboard</h1>
+            <span>Welcome to your business overview</span>
+        </div>
+
+        <span>📅 November 2026</span>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <section id="overview" class="cards">
+
+        <div class="card">
+            <h3>Total Revenue</h3>
+            <h2>₹2,50,000</h2>
+            <p>↑ 12% this month</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Users</h3>
+            <h2>5,240</h2>
+            <p>↑ 8% this month</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Sales</h3>
+            <h2>1,250</h2>
+            <p>↑ 15% this month</p>
+        </div>
+
+        <div class="card">
+            <h3>Conversion Rate</h3>
+            <h2>4.8%</h2>
+            <p>↑ 3% this month</p>
+        </div>
+
+    </section>
+
+    <!-- Charts -->
+    <section class="chart-container" id="revenue">
+
+        <div class="chart-box">
+            <h3>Monthly Sales Trends</h3>
+
+            <div class="bar-chart">
+
+                <div class="bar" style="height:40%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:45%"></div>
+                <div class="bar" style="height:70%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar" style="height:90%"></div>
+                <div class="bar" style="height:75%"></div>
+
+            </div>
+
+            <div class="chart-labels">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+            </div>
+
+        </div>
+
+        <!-- Performance -->
+        <div class="chart-box" id="sales">
+
+            <h3>Performance Metrics</h3>
+
+            <div class="performance">
+
+                <div class="progress-item">
+                    <p>Sales Target - 85%</p>
+                    <div class="progress">
+                        <span style="width:85%"></span>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <p>User Growth - 70%</p>
+                    <div class="progress">
+                        <span style="width:70%"></span>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <p>Customer Satisfaction - 95%</p>
+                    <div class="progress">
+                        <span style="width:95%"></span>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <p>Revenue Target - 80%</p>
+                    <div class="progress">
+                        <span style="width:80%"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Recent Activities -->
+    <section class="activity-container" id="activities">
+
+        <div class="activity">
+            <h3>Recent Activities</h3>
+
+            <p>🛒 New order received - Order #101</p>
+            <p>👤 New user registered</p>
+            <p>💰 Payment received - ₹5,000</p>
+            <p>📦 Product successfully delivered</p>
+            <p>⭐ New customer review received</p>
+
+        </div>
+
+        <div class="activity" id="users">
+
+            <h3>User Statistics</h3>
+
+            <p>👥 Active Users: 4,200</p>
+            <p>🆕 New Users: 520</p>
+            <p>🔄 Returning Users: 3,100</p>
+            <p>🌐 Website Visits: 12,500</p>
+            <p>📈 User Growth: 8%</p>
+
+        </div>
+
+    </section>
+
+    <!-- Transactions Table -->
+    <section class="table-box">
+
+        <h3>Recent Transactions</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>#101</td>
+                    <td>Rahul</td>
+                    <td>₹5,000</td>
+                    <td>01-11-2026</td>
+                    <td class="status">Completed</td>
+                </tr>
+
+                <tr>
+                    <td>#102</td>
+                    <td>Priya</td>
+                    <td>₹3,500</td>
+                    <td>02-11-2026</td>
+                    <td class="status">Completed</td>
+                </tr>
+
+                <tr>
+                    <td>#103</td>
+                    <td>Arjun</td>
+                    <td>₹7,000</td>
+                    <td>02-11-2026</td>
+                    <td class="status">Completed</td>
+                </tr>
+
+                <tr>
+                    <td>#104</td>
+                    <td>Sneha</td>
+                    <td>₹2,500</td>
+                    <td>03-11-2026</td>
+                    <td class="status">Completed</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+</div>
+
+<script>
+
+// Sidebar navigation
+function showSection(id, element) {
+
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+    });
+
+    let items = document.querySelectorAll(".sidebar li");
+
+    items.forEach(function(item) {
+        item.classList.remove("active");
+    });
+
+    element.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
